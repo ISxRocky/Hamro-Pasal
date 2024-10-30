@@ -70,7 +70,7 @@ const CartPage = ({
           </div>
 
           {/* Cart summary */}
-          <div className="border p-4 mt-4 lg:mt-0 h-[230px] md:h-auto">
+          <div className="border p-4 mt-4 lg:mt-0 h-auto">
             <p className="text-center text-2xl font-semibold">Cart Summary</p>
             <div className="text-right mt-2">
               <p>Total Price: ${totalPrice.toFixed(2)}</p>
@@ -84,7 +84,7 @@ const CartPage = ({
               </button>
             </div>
             <p></p>
-            <div className="w-40 flex lg:flex-col mt-2">
+            <div className="w-40 flex flex-col sm:flex-row lg:flex-col mt-2">
               <img src={esewa} alt="" />
               <img src={khalti} alt="" />
             </div>
