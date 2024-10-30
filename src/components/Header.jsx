@@ -7,7 +7,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 
-const Header = ({ cart }) => {
+const Header = ({ number }) => {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -40,12 +40,14 @@ const Header = ({ cart }) => {
       <div className="flex items-center gap-4">
         <FaSearch className="text-2xl" />
         <FaRegUser className="text-2xl" />
-        <div className="relative inline-block">
-          <CiShoppingCart className="text-4xl" />
-          <p className="absolute bottom-0 right-0 w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
-            {cart}
-          </p>
-        </div>
+        <Link to="/cart">
+          <div className="relative inline-block">
+            <CiShoppingCart className="text-4xl" />
+            <p className="absolute bottom-0 right-0 w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
+              {number}
+            </p>
+          </div>
+        </Link>
         <RxHamburgerMenu
           onClick={() => setVisible(true)}
           className="md:hidden text-2xl"

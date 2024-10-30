@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Prata&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,6 +12,14 @@ a.active hr {
   font-family: "Prata", serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.dynapuff {
+  font-family: "DynaPuff", system-ui;
+  font-optical-sizing: auto; 
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 
 

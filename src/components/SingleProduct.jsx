@@ -5,7 +5,7 @@ import StarRating from "./StarRating";
 import { RiSubtractFill } from "react-icons/ri";
 import { IoAddOutline } from "react-icons/io5";
 
-const SingleProduct = ({ handleCart, quantity, handleAdd, handleMinus }) => {
+const SingleProduct = ({ handleCart, quantity, setQuantity }) => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -26,10 +26,22 @@ const SingleProduct = ({ handleCart, quantity, handleAdd, handleMinus }) => {
 
   const productStock = product.stock;
 
+  const handleAdd = () => {
+    if (quantity < productStock) {
+      setQuantity((prev) => prev + 1);
+    }
+  };
+
+  const handleMinus = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col md:flex-row gap-8 items-center mt-10">
-        <div className="border md:ml-60 bg-gray-50 md:h-[300px] md:w-[600px]">
+        <div className="md:ml-6 md:h-[300px] md:w-[600px]">
           <img src={product.thumbnail} alt={product.title} />
         </div>
         <div className="flex flex-col gap-3">
@@ -43,31 +55,13 @@ const SingleProduct = ({ handleCart, quantity, handleAdd, handleMinus }) => {
             <p className="w-[75%] text-gray-500">{product.description}</p>
           </div>
           <div>
-            <h1 className="text-xl font-medium mb-2">Quantity</h1>
-            <div className="flex items-center gap-2">
-              <RiSubtractFill
-                onClick={handleMinus}
-                className="cursor-pointer"
-              />
-              <input
-                type="text"
-                className="w-10 text-center bg-gray-50 py-1 caret-transparent"
-                readOnly
-                value={quantity}
-              />
-              <IoAddOutline
-                onClick={() => handleAdd(productStock)}
-                className="cursor-pointer"
-              />
-              <p className="ml-6 text-sm text-red-400">{`Only ${product.stock} items left`}</p>
+            <div className="flex justify-start gap-2">
+              <p className="text-sm text-red-400">{`Only ${product.stock} items left`}</p>
             </div>
           </div>
           <div className="flex flex-row gap-5 mt-5">
-            <button className="border px-7 py-4 font-semibold bg-blue-400 text-white hover:bg-blue-500">
-              Buy Now
-            </button>
             <button
-              onClick={handleCart}
+              onClick={() => handleCart({ ...product, quantity })} // Pass product with quantity
               className="border px-7 py-4 font-semibold bg-orange-400 text-white hover:bg-orange-500"
             >
               Add to Cart
